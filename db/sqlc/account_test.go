@@ -1,7 +1,25 @@
 package db
 
-import "testing"
+import (
+	"context"
+	"testing"
 
-func TestCreateAccount(t *testing.T){
-	 
+	"github.com/stretchr/testify/require"
+)
+
+func TestCreateAccount(t *testing.T) {
+	arg := CreateAccountParams{
+		Owner:    "olamide",
+		Balance:  1000000000,
+		Currency: "USD",
+	}
+	account, err := testQueries.CreateAccount(context.Background(), arg)
+
+	require.NoError(t, err)
+	require.NotEmpty(t, account)
+
+	require.Equal(t, arg.Owner, account.Owner)
+	require.Equal(t, arg.Balance, account.Balance)
+	require.Equal(t, arg.Currency, account.Currency)
+
 }
