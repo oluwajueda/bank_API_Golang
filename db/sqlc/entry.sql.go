@@ -15,11 +15,11 @@ INSERT INTO entries (
 
 type CreateEntryParams struct {
 	AccountID int64 `json:"account_id"`
-	Ammount   int64 `json:"amount"`
+	Amount    int64 `json:"amount"`
 }
 
 func (q *Queries) CreateEntry(ctx context.Context, arg CreateEntryParams) (Entry, error) {
-	row := q.db.QueryRowContext(ctx, createEntry, arg.AccountID, arg.Ammount)
+	row := q.db.QueryRowContext(ctx, createEntry, arg.AccountID, arg.Amount)
 
 	var i Entry
 
